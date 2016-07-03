@@ -23,7 +23,7 @@ app.run(function($ionicPlatform) {
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
-
+    //banner ad
     if(window.plugins && window.plugins.AdMob) {
                 var admob_key = device.platform == "Android" ? "ANDROID_PUBLISHER_KEY" : "ca-app-pub-8780946757864821/6248315999";
                 var admob = window.plugins.AdMob;
@@ -352,7 +352,7 @@ app.controller('registeredController', function($scope, $firebaseAuth, $location
   }
 });
 var clickedID = null;
-app.controller('postHousingController', function($scope, $state, Housing, postHouse, $window, UserID) {
+app.controller('postHousingController', function($scope, $state, Housing, postHouse, $window) {
   $scope.items = Housing;
   
   $scope.postHousingClick = function(name, startDate, endDate, price, desc) {

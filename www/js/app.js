@@ -23,7 +23,7 @@ app.run(function($ionicPlatform) {
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
-
+    //banner ad
     if(window.plugins && window.plugins.AdMob) {
                 var admob_key = device.platform == "Android" ? "ANDROID_PUBLISHER_KEY" : "ca-app-pub-8780946757864821/6248315999";
                 var admob = window.plugins.AdMob;
@@ -252,9 +252,9 @@ app.controller("loginController", function($scope, $state, $firebaseAuth, $locat
     $scope.loginFacebook = function() {
   
     Auth.$authWithOAuthPopup('facebook').then(function(authData) {
-      console.log(authData);
+      //console.log(authData);
       UserID = authData;
-      console.log(authData);
+      //console.log(authData);
       $state.go('tabs.housing');
       }).catch(function(error) {
         if (error.code === 'TRANSPORT_UNAVAILABLE') {
@@ -275,7 +275,6 @@ app.controller("loginController", function($scope, $state, $firebaseAuth, $locat
 
 app.factory("Housing", function($firebaseArray) {
   var itemsRef = new Firebase("https://badger-xchange.firebaseio.com/housing");
-  console.log("enterFactoryController");
   return $firebaseArray(itemsRef);
 })
 app.factory("Books", function($firebaseArray) {
@@ -352,7 +351,7 @@ app.controller('registeredController', function($scope, $firebaseAuth, $location
   }
 });
 var clickedID = null;
-app.controller('postHousingController', function($scope, $state, Housing, postHouse, $window, UserID) {
+app.controller('postHousingController', function($scope, $state, Housing, postHouse, $window) {
   $scope.items = Housing;
   
   $scope.postHousingClick = function(name, startDate, endDate, price, desc) {
@@ -493,8 +492,16 @@ app.factory("Tickets2", function($firebaseArray) {
   return refReturn;
 })
 
-app.controller('manageHousingController', function($scope, $state, Housing2, postHouse, $window, $firebaseArray, $timeout) {
-  $scope.items = Housing2;
+app.controller('manageHousingController', function($scope, $state, Housing2, Housing, postHouse, $window, $firebaseArray, $timeout) {
+  var itemsRef = new Firebase("https://badger-xchange.firebaseio.com/housing");
+  var refReturn;
+  console.log("enterHousing2FactoryController");
+  itemsRef.orderByChild('facebookID').equalTo(UserID.facebook.id).on('value', function(snapshot) {
+      $scope.items = snapshot.val();
+  });
+  //$scope.items = Housing;
+  //$scope.items = Housing2;
+  console.log($scope.items);  
   //loops through array from firebase
   //takes firebase key and puts in in the object
   //this way it can be found later
@@ -511,6 +518,7 @@ app.controller('manageHousingController', function($scope, $state, Housing2, pos
   $scope.shouldShowDelete = true;
  console.log("enterController");
   $scope.itemInfo = function(index) {
+    consoldeolog($scope.items);
     var messagesRef = new Firebase("https://badger-xchange.firebaseio.com/housing");
     $scope.messages = $firebaseArray(messagesRef);
 
@@ -646,8 +654,11 @@ app.controller('postBookController', function($scope, $state, Books, postBook, $
 });
 
 app.controller('manageBooksController', function($scope, $state, Books2, postBook, $window, $firebaseArray, $timeout) {
-  $scope.items = Books2;
-  //console.log("scope items: " + $scope.items);
+  var itemsRef = new Firebase("https://badger-xchange.firebaseio.com/books");
+  var refReturn;
+  itemsRef.orderByChild('facebookID').equalTo(UserID.facebook.id).on('value', function(snapshot) {
+      $scope.items = snapshot.val();
+  });
     angular.forEach($scope.items,function(value, key) {
     value.fireBaseKey = key;
   });
@@ -728,7 +739,11 @@ app.controller('postTicketController', function($scope, $state, Tickets, postTic
 });
 
 app.controller('manageTicketsController', function($scope, $state, Tickets2, postTicket, $window, $firebaseArray, $timeout) {
-  $scope.items = Tickets2;
+    var itemsRef = new Firebase("https://badger-xchange.firebaseio.com/tickets");
+  var refReturn;
+  itemsRef.orderByChild('facebookID').equalTo(UserID.facebook.id).on('value', function(snapshot) {
+      $scope.items = snapshot.val();
+  });
   //console.log("scope items: " + $scope.items);
   angular.forEach($scope.items,function(value, key) {
     value.fireBaseKey = key;
