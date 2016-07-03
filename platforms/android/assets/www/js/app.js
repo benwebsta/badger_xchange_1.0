@@ -3,14 +3,13 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('badger-xchange', ['ionic', 'firebase', 'ngSanitize']);
+var app = angular.module('badger-xchange', ['ionic', 'firebase', 'ngSanitize', 'ngCordovaOauth']);
 var ref = new Firebase("https://badger-xchange.firebaseio.com");
 //var authObject = null;
 //var ref = new Firebase("https://badger-xchange.firebaseio.com");
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
-    debugger;
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -24,6 +23,29 @@ app.run(function($ionicPlatform) {
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+
+    if(window.plugins && window.plugins.AdMob) {
+                var admob_key = device.platform == "Android" ? "ANDROID_PUBLISHER_KEY" : "ca-app-pub-8780946757864821/6248315999";
+                var admob = window.plugins.AdMob;
+                admob.createBannerView( 
+                    {
+                        'publisherId': admob_key,
+                        'adSize': admob.AD_SIZE.BANNER,
+                        'bannerAtTop': false
+                    }, 
+                    function() {
+                        admob.requestAd(
+                            { 'isTesting': false }, 
+                            function() {
+                                admob.showAd(true);
+                            }, 
+                            function() { console.log('failed to request ad'); }
+                        );
+                    }, 
+                    function() { console.log('failed to create banner view'); }
+                );
+    }
+
     ref = new Firebase("https://badger-xchange.firebaseio.com");
   });
 })
@@ -214,13 +236,13 @@ $stateProvider
  
 })
 
-  app.factory("Auth", function($firebaseAuth) {
-    var usersRef = new Firebase("https//badger-xchange.firebaseio.com/");
-    return $firebaseAuth(usersRef);
-   })
+.factory("Auth", function($firebaseAuth) {
+  var usersRef = new Firebase("https//badger-xchange.firebaseio.com/users");
+  return $firebaseAuth(usersRef);
+})
 
 var UserID = null;
-app.controller("loginController", function($scope, $state, $firebaseAuth, $location, Auth) {
+app.controller("loginController", function($scope, $state, $firebaseAuth, $location, $cordovaOauth, Auth) {
 
     $scope.changeState=function(theState){
     console.log(theState);
@@ -228,38 +250,25 @@ app.controller("loginController", function($scope, $state, $firebaseAuth, $locat
   }
 
     $scope.loginFacebook = function() {
-
-      //     var provider = new firebase.auth.FacebookAuthProvider();
-      // firebase.auth().signInWithPopup(provider).then(function(authData)
-
-     // console.log("test");
-      //var authObject = $firebaseAuth(ref);
-      //console.log("authObject");
-
-
-    Auth.$authWithOAuthRedirect('facebook').then(function(authData) {
+  
+    Auth.$authWithOAuthPopup('facebook').then(function(authData) {
+      console.log(authData);
+      UserID = authData;
+      console.log(authData);
       $state.go('tabs.housing');
       }).catch(function(error) {
         if (error.code === 'TRANSPORT_UNAVAILABLE') {
+          console.log("transport unavail");
+          console.log(error)
           Auth.$authWithOAuthPopup('facebook').then(function(authData) {
+            $state.go('tabs.housing');
           });
-        } else {
+        }
+        else 
+        {
           console.log(error);
         }
     });
-
-
-/*
-      Auth.$authWithOAuthPopup('facebook').then(function(authData) {
-        //remember: "sessionOnly",
-        console.log(authData);
-        UserID = authData;
-        $state.go('tabs.housing');
-      }).catch(function(error) {
-        // Another error occurred
-        console.log(error);
-      })
-      */
     };
  
 });
@@ -343,7 +352,7 @@ app.controller('registeredController', function($scope, $firebaseAuth, $location
   }
 });
 var clickedID = null;
-app.controller('postHousingController', function($scope, $state, Housing, postHouse, $window) {
+app.controller('postHousingController', function($scope, $state, Housing, postHouse, $window, UserID) {
   $scope.items = Housing;
   
   $scope.postHousingClick = function(name, startDate, endDate, price, desc) {
@@ -561,7 +570,8 @@ console.log("enterHouseItemController");
   }
 
   $scope.facebooklogout = function() {
-    //ref.unauth();
+    console.log(UserID);
+    ref.unauth();
     $scope.user = null;
     UserID = null;
     $state.go('login');
@@ -781,7 +791,8 @@ app.controller('ticketItemController', function($scope, $state, Tickets, postTic
   }
 
   $scope.facebooklogout = function() {
-    //ref.unauth();
+    console.log(UserID);
+    ref.unauth();
     $scope.user = null;
     UserID = null;
     $state.go('login');

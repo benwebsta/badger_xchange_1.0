@@ -23,6 +23,29 @@ app.run(function($ionicPlatform) {
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+
+    if(window.plugins && window.plugins.AdMob) {
+                var admob_key = device.platform == "Android" ? "ANDROID_PUBLISHER_KEY" : "ca-app-pub-8780946757864821/6248315999";
+                var admob = window.plugins.AdMob;
+                admob.createBannerView( 
+                    {
+                        'publisherId': admob_key,
+                        'adSize': admob.AD_SIZE.BANNER,
+                        'bannerAtTop': false
+                    }, 
+                    function() {
+                        admob.requestAd(
+                            { 'isTesting': false }, 
+                            function() {
+                                admob.showAd(true);
+                            }, 
+                            function() { console.log('failed to request ad'); }
+                        );
+                    }, 
+                    function() { console.log('failed to create banner view'); }
+                );
+    }
+
     ref = new Firebase("https://badger-xchange.firebaseio.com");
   });
 })
@@ -329,7 +352,7 @@ app.controller('registeredController', function($scope, $firebaseAuth, $location
   }
 });
 var clickedID = null;
-app.controller('postHousingController', function($scope, $state, Housing, postHouse, $window) {
+app.controller('postHousingController', function($scope, $state, Housing, postHouse, $window, UserID) {
   $scope.items = Housing;
   
   $scope.postHousingClick = function(name, startDate, endDate, price, desc) {
@@ -547,7 +570,8 @@ console.log("enterHouseItemController");
   }
 
   $scope.facebooklogout = function() {
-    //ref.unauth();
+    console.log(UserID);
+    ref.unauth();
     $scope.user = null;
     UserID = null;
     $state.go('login');
@@ -767,7 +791,8 @@ app.controller('ticketItemController', function($scope, $state, Tickets, postTic
   }
 
   $scope.facebooklogout = function() {
-    //ref.unauth();
+    console.log(UserID);
+    ref.unauth();
     $scope.user = null;
     UserID = null;
     $state.go('login');

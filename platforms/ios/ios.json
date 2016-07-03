@@ -11,6 +11,36 @@
                         {
                             "xml": "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVInAppBrowser\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"AdMob\"><param name=\"ios-package\" value=\"CDVAdMobPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Calendar\"><param name=\"ios-package\" value=\"Calendar\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "*-Info.plist": {
+                "parents": {
+                    "NSAppTransportSecurity": [
+                        {
+                            "xml": "<dict><key>NSAllowsArbitraryLoads</key><true /></dict>",
+                            "count": 1
+                        }
+                    ],
+                    "CFBundleLocalizations": [
+                        {
+                            "xml": "<array><string>en</string><string>de</string><string>nl</string><string>fr</string><string>it</string></array>",
+                            "count": 1
+                        }
+                    ],
+                    "NSCalendarsUsageDescription": [
+                        {
+                            "xml": "<string />",
+                            "count": 1
                         }
                     ]
                 }
@@ -19,6 +49,15 @@
     },
     "installed_plugins": {
         "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.ionicframework.ioniclogin622247"
+        },
+        "cordova-plugin-extension": {
+            "PACKAGE_NAME": "com.ionicframework.ioniclogin622247"
+        },
+        "cordova-plugin-admobpro": {
+            "PACKAGE_NAME": "com.ionicframework.ioniclogin622247"
+        },
+        "cordova-plugin-calendar": {
             "PACKAGE_NAME": "com.ionicframework.ioniclogin622247"
         }
     },
@@ -32,9 +71,33 @@
                 "cordova.InAppBrowser.open",
                 "window.open"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-admobpro/www/AdMob.js",
+            "id": "cordova-plugin-admobpro.AdMob",
+            "pluginId": "cordova-plugin-admobpro",
+            "clobbers": [
+                "window.AdMob"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-calendar/www/Calendar.js",
+            "id": "cordova-plugin-calendar.Calendar",
+            "pluginId": "cordova-plugin-calendar",
+            "clobbers": [
+                "Calendar"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-calendar/test/tests.js",
+            "id": "cordova-plugin-calendar.tests",
+            "pluginId": "cordova-plugin-calendar"
         }
     ],
     "plugin_metadata": {
-        "cordova-plugin-inappbrowser": "1.4.1-dev"
+        "cordova-plugin-inappbrowser": "1.4.1-dev",
+        "cordova-plugin-extension": "1.5.1",
+        "cordova-plugin-admobpro": "2.18.0",
+        "cordova-plugin-calendar": "4.5.1"
     }
 }
