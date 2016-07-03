@@ -492,7 +492,7 @@ app.factory("Tickets2", function($firebaseArray) {
   return refReturn;
 })
 
-app.controller('manageHousingController', function($scope, $state, Housing2, Housing, postHouse, $window, $firebaseArray, $timeout) {
+app.controller('manageHousingController', function($scope, $state, Housing2, Housing, postHouse, $window, $firebaseArray, $timeout, $ionicPopup) {
   var itemsRef = new Firebase("https://badger-xchange.firebaseio.com/housing");
   var refReturn;
   console.log("enterHousing2FactoryController");
@@ -542,13 +542,29 @@ app.controller('manageHousingController', function($scope, $state, Housing2, Hou
   }
 
   $scope.remove = function(index) {
+  console.log("in");
+   var confirmPopup = $ionicPopup.confirm({
+     title: 'Delete Housing Post',
+     template: 'Are you sure you want to delete this post?'
+   });
+
+   confirmPopup.then(function(res) {
+     if(res) {
+       var deleteFirebaseRef = new Firebase("https://badger-xchange.firebaseio.com/housing/"+ index.fireBaseKey);
+       deleteFirebaseRef.remove();
+     } else {
+       console.log('delete cancelled');
+     }
+   });
+
+
     //var id = $scope.items[index].$id;
-    console.log(index.fireBaseKey);
+   // console.log(index.fireBaseKey);
     //gets the key we got and removes the url 
-    var deleteFirebaseRef = new Firebase("https://badger-xchange.firebaseio.com/housing/"+ index.fireBaseKey);
-    deleteFirebaseRef.remove();
+    //var deleteFirebaseRef = new Firebase("https://badger-xchange.firebaseio.com/housing/"+ index.fireBaseKey);
+    //deleteFirebaseRef.remove();
     //grabs the array and deletes the item
-    delete $scope.items[index.fireBaseKey];
+    //delete $scope.items[index.fireBaseKey];
   
   }
 
@@ -653,7 +669,7 @@ app.controller('postBookController', function($scope, $state, Books, postBook, $
 
 });
 
-app.controller('manageBooksController', function($scope, $state, Books2, postBook, $window, $firebaseArray, $timeout) {
+app.controller('manageBooksController', function($scope, $state, Books2, postBook, $window, $firebaseArray, $timeout, $ionicPopup) {
   var itemsRef = new Firebase("https://badger-xchange.firebaseio.com/books");
   var refReturn;
   itemsRef.orderByChild('facebookID').equalTo(UserID.facebook.id).on('value', function(snapshot) {
@@ -691,13 +707,20 @@ app.controller('manageBooksController', function($scope, $state, Books2, postBoo
   // }
 
   $scope.remove = function(index) {
-    //var id = $scope.items[index].$id;
-    console.log(index.fireBaseKey);
-    //gets the key we got and removes the url 
-    var deleteFirebaseRef = new Firebase("https://badger-xchange.firebaseio.com/books/"+ index.fireBaseKey);
-    deleteFirebaseRef.remove();
-    //grabs the array and deletes the item
-    delete $scope.items[index.fireBaseKey];
+   console.log("in");
+   var confirmPopup = $ionicPopup.confirm({
+     title: 'Delete Book Post',
+     template: 'Are you sure you want to delete this post?'
+   });
+
+   confirmPopup.then(function(res) {
+     if(res) {
+       var deleteFirebaseRef = new Firebase("https://badger-xchange.firebaseio.com/books/"+ index.fireBaseKey);
+       deleteFirebaseRef.remove();
+     } else {
+       console.log('delete cancelled');
+     }
+   });
   
   }
 
@@ -738,7 +761,7 @@ app.controller('postTicketController', function($scope, $state, Tickets, postTic
 
 });
 
-app.controller('manageTicketsController', function($scope, $state, Tickets2, postTicket, $window, $firebaseArray, $timeout) {
+app.controller('manageTicketsController', function($scope, $state, Tickets2, postTicket, $window, $firebaseArray, $timeout, $ionicPopup) {
     var itemsRef = new Firebase("https://badger-xchange.firebaseio.com/tickets");
   var refReturn;
   itemsRef.orderByChild('facebookID').equalTo(UserID.facebook.id).on('value', function(snapshot) {
@@ -770,14 +793,21 @@ app.controller('manageTicketsController', function($scope, $state, Tickets2, pos
   }
 
    $scope.remove = function(index) {
-    //var id = $scope.items[index].$id;
-    console.log(index.fireBaseKey);
-    //gets the key we got and removes the url 
-    var deleteFirebaseRef = new Firebase("https://badger-xchange.firebaseio.com/tickets/"+ index.fireBaseKey);
-    deleteFirebaseRef.remove();
-    //grabs the array and deletes the item
-    delete $scope.items[index.fireBaseKey];
-  
+   console.log("in");
+   var confirmPopup = $ionicPopup.confirm({
+     title: 'Delete Ticket Post',
+     template: 'Are you sure you want to delete this post?'
+   });
+
+   confirmPopup.then(function(res) {
+     if(res) {
+      console.log(index.fireBaseKey);
+       var deleteFirebaseRef = new Firebase("https://badger-xchange.firebaseio.com/tickets/"+ index.fireBaseKey);
+       deleteFirebaseRef.remove();
+     } else {
+       console.log('delete cancelled');
+     }
+   });
   }
 
 

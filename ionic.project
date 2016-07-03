@@ -1,6 +1,6 @@
 {
   "name": "ionic-login",
-  "app_id": "",
+  "app_id": "0c1cc343",
   "gulpStartupTasks": [
     "sass",
     "watch"
