@@ -1,0 +1,37 @@
+<ion-view title="Manage Books">
+    <ion-content padding="true">
+        <h1><center>Delete Old Posts</center></h1>
+    <a ui-sref="tabs.books">
+       <div class="button-bar">
+                    <button class="button button-outline button-dark padding">
+                        <i class="icon ion-checkmark balanced padding"></i>Done
+                    </button>
+            
+        </div>        
+    </a>
+<!--     <ion-list ng-controller="manageHousingController" can-swipe="listCanSwipe" show-delete="shouldShowDelete">
+        <ion-item ng-repeat="item in items" ng-click="itemInfo($index)">
+          <h2>{{item.title}}: </h2> <p>${{item.price}}</p> 
+              <ion-option-button class="button-info">
+                Delete
+              </ion-option-button>
+        </ion-item>
+    </ion-list> -->
+
+  <ion-list ng-controller="manageBooksController"
+          show-delete="shouldShowDelete">
+  <ion-item ng-repeat="item in items" ng-click="itemInfo($index)"
+            class="item-thumbnail-left">
+
+    <h2>{{item.title}}</h2>
+    <p>{{item.price}}</p>
+    <ion-delete-button class="ion-minus-circled"
+                            ng-click="remove(item)">
+    </ion-delete-button>
+
+  </ion-item>
+</ion-list>
+
+
+    </ion-content>
+  </ion-view>

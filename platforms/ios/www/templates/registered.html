@@ -1,0 +1,15 @@
+<!--The email registration page-->
+<ion-view>
+    <ion-content scroll="false">
+       <section class="home-container">
+       	Email:
+      <input ng-model="username"> 
+      	Password:
+      <input ng-model="password"> 
+      <div class = "col text-center">
+               Already have an account?
+        <button ng-click="login(username, password)" class="button button-block button-stable">Sign In</button>
+      </div>            
+       </section>
+    </ion-content>
+</ion-view>

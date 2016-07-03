@@ -1,0 +1,37 @@
+<ion-view title="View Tickets">
+<ion-content padding="true">
+    <h1><center>Ticket Information</center></h1>
+
+        <ion-list > 
+            <ion-item>
+                {{nameId}}
+            </ion-item>
+            <ion-item >
+                {{startDateId}}
+            </ion-item>
+            <ion-item >
+                {{endDateId}}
+            </ion-item>
+            <ion-item >
+                {{priceId}}
+            </ion-item>
+            <ion-item >
+                {{descId}}
+            </ion-item>
+
+        </ion-list>
+    <!-- <a ui-sref="tabs.housing"> -->
+    <a>
+      <div class="button-bar">
+                <button class= "button button-assertive icon-left ion-chatbox padding" ng-click = "facebookMessage()">
+                Message Seller
+                </button>  
+                
+        </div>
+
+        <div class = "item item-image">
+               <img src="./img/banner_ad.jpg" class = "logo"/>
+        </div>  
+    </a>
+</ion-content>
+</ion-view>

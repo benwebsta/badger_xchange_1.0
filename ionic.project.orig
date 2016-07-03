@@ -1,0 +1,23 @@
+{
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 6e05053a29a2e14072eb189ba3cb55e906cd44f4
+  "name": "ionic-login",
+  "app_id": "",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
+<<<<<<< HEAD
+=======
+=======
+  "name": "badger-xchange",
+  "app_id": ""
+>>>>>>> 656fc0d1cb7d4224a75f952534bb1470a9c5f179
+>>>>>>> 6e05053a29a2e14072eb189ba3cb55e906cd44f4
+}

@@ -1,0 +1,415 @@
+// Ionic Starter App
+
+// angular.module is a global place for creating, registering and retrieving Angular modules
+// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+// the 2nd parameter is an array of 'requires'
+var app = angular.module('badger-xchange', ['ionic', 'firebase']);
+var ref = null;
+//var authObject = null;
+//var ref = new Firebase("https://badger-xchange.firebaseio.com");
+
+app.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    if(window.cordova && window.cordova.plugins.Keyboard) {
+      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+      // for form inputs)
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+
+      // Don't remove this line unless you know what you are doing. It stops the viewport
+      // from snapping when text inputs are focused. Ionic handles this internally for
+      // a much nicer keyboard experience.
+      cordova.plugins.Keyboard.disableScroll(true);
+    }
+    if(window.StatusBar) {
+      StatusBar.styleDefault();
+    }
+    ref = new Firebase("https://badger-xchange.firebaseio.com");
+  });
+})
+
+app.config(function($stateProvider, $urlRouterProvider) {
+ 
+$stateProvider
+.state('tabs', {
+  url: "/tabs",
+  abstract: true,
+  templateUrl: "templates/tabs.html"
+})
+.state('tabs.housing', {
+  url: "/housing",
+  views: {
+    'housing2': {
+      templateUrl: "templates/housing.html",
+      controller: "facebooklogoutController"
+    }
+  }
+})
+.state('tabs.books', {
+  url: "/books",
+  views: {
+    'books2': {
+      templateUrl: "templates/books.html",
+      controller: "facebooklogoutController"
+    }
+  }
+})
+.state('tabs.tickets', {
+  url: "/tickets",
+  views: {
+    'tickets2': {
+      templateUrl: "templates/tickets.html",
+      controller: "facebooklogoutController"
+    }
+  }
+})
+.state('tabs.manageHousing', {
+  url: '/manageHousing',
+  views: {
+    housing2: {
+      templateUrl: 'templates/manageHousing.html'
+    }
+  }
+})
+.state('tabs.editHousing', {
+  url: '/editHousing',
+  views: {
+    housing2: {
+      templateUrl: 'templates/editHousing.html'
+    }
+  }
+})
+.state('tabs.viewHousing', {
+  url: '/viewHousing', 
+  views: {
+    housing2: {
+      templateUrl: 'templates/viewHousing.html',
+      controller: "postItemController"
+    }
+  }
+})
+.state('tabs.postHousing', {
+  url: '/postHousing',
+  views: {
+    housing2: {
+      templateUrl: 'templates/postHousing.html',
+      controller: "postItemController"
+    }
+  }
+})
+.state('tabs.postBooks', {
+  url: '/postBooks',
+  views: {
+    books2: {
+      templateUrl: 'templates/postBooks.html'
+    }
+  }
+})
+.state('tabs.editBook', {
+  url: '/editBook',
+  views: {
+    books2: {
+      templateUrl: 'templates/editBook.html'
+    }
+  }
+})
+$stateProvider.state('tabs.manageBooks', {
+  url: '/manageBooks',
+  views: {
+    books2: {
+      templateUrl: 'templates/manageBooks.html'
+    }
+  }
+})
+.state('tabs.postTickets', {
+  url: '/postTickets',
+  views: {
+    tickets2: {
+      templateUrl: 'templates/postTickets.html'
+    }
+  }
+})
+.state('tabs.manageTickets', {
+  url: '/manageTickets',
+  views: {
+    tickets2: {
+      templateUrl: 'templates/manageTickets.html'
+    }
+  }
+})
+$stateProvider.state('tabs.editTicket', {
+  url: '/editTicket',
+  views: {
+    tickets2: {
+      templateUrl: 'templates/editTicket.html'
+    }
+  }
+})
+.state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'loginController'
+  })
+
+.state('email', {
+    url: '/email',
+    templateUrl: 'templates/email.html',
+    controller: 'emailController'
+  })
+
+.state('registered', {
+    url: '/registered',
+    templateUrl: 'templates/registered.html',
+    controller: 'registeredController'
+  })
+
+/*.state('facebook', {
+    url: '/facebook',
+    templateUrl: 'templates/facebook.html',
+    controller: 'faceboookController'
+  });*/
+
+  $urlRouterProvider.otherwise("/login");
+ 
+})
+
+/*.controller('loginController', function($scope, $state, $firebaseAuth, $location) { 
+
+  $scope.changeState=function(theState){
+    console.log(theState);
+    $state.go(theState);}
+})*/
+var UserID = null;
+app.controller("loginController", function($scope, $state, $firebaseAuth, $location) {
+
+    $scope.changeState=function(theState){
+    console.log(theState);
+    $state.go(theState);}
+
+    $scope.login = function() {
+      //var ref = new Firebase('https://badger-xchange.firebaseio.com');
+      var authObject = $firebaseAuth(ref);
+      authObject.$authWithOAuthPopup('facebook').then(function(authData) {
+        //remember: "sessionOnly",
+        console.log(authData);
+        UserID = authData;
+      }).then(function() {
+        $state.go('tabs.housing');
+      }).catch(function(error) {
+        console.log('error' + error);
+      })
+    }
+ 
+});
+
+/*.factory("Items", function($firebaseArray) {
+  var itemsRef = new Firebase("https://badger-xchange.firebaseio.com/items");
+  return $firebaseArray(itemsRef);
+})*/
+
+/*.controller("ListCtrl", function($scope, Items) {
+  $scope.items = Items;
+  $scope.addItem = function() {
+    var name = prompt("What do you need to buy?");
+    if (name) {
+      $scope.items.$add({
+        "name": name
+      });
+    }
+  };
+});*/
+
+/*app.controller('postItemController', function($scope, Items) {
+    $scope.items = Items;
+  $scope.postHousingClick = function() {
+    var name = prompt("What do you need to buy?");
+    if (name) {
+      $scope.items.$add({
+        "name": name
+      });
+    }
+  };
+});*/
+
+app.factory("Items", function($firebaseArray) {
+  var itemsRef = new Firebase("https://badger-xchange.firebaseio.com/items");
+  return $firebaseArray(itemsRef);
+})
+
+app.factory("Post", function() {
+  items = {};
+  items.name = '';
+  items.startDate = '';
+  items.endDate = '';
+  items.price = '';
+  items.desc = '';
+  return items;
+})
+
+app.controller('facebooklogoutController', function($scope, $state, $firebaseAuth) {
+  $scope.facebooklogout = function() {
+    //ref.unauth();
+    $scope.user = null;
+    UserID = null;
+    $state.go('login');
+  }
+});
+
+app.controller('TabsCtrl', function($scope) {
+})
+
+app.controller('emailController', function($scope, $firebaseAuth, $location) { 
+  $scope.register = function(username, password) {
+      var fbAuth = $firebaseAuth(fb);
+      fbAuth.$createUser({email: username, password: password}).then(function() {
+          return fbAuth.$authWithPassword({
+              email: username,
+              password: password
+          });
+      }).then(function(authData) {
+          $location.path("/tabs.housing");
+      }).catch(function(error) {
+          console.error("ERROR " + error);
+      });
+  }
+});
+
+/*app.controller('facebookController', function($scope, $firebaseAuth, $location) { 
+    $scope.login = function(username, password) {
+      var fbAuth = $firebaseAuth(fb);
+      fbAuth.$authWithPassword({
+          email: username,
+          password: password
+      }).then(function(authData) {
+          $location.path("/tabs.housing");
+      }).catch(function(error) {
+          console.error("ERROR: " + error);
+      });
+  }
+});*/
+
+app.controller('registeredController', function($scope, $firebaseAuth, $location) { 
+    $scope.login = function(username, password) {
+      var fbAuth = $firebaseAuth(fb);
+      fbAuth.$authWithPassword({
+          email: username,
+          password: password
+      }).then(function(authData) {
+          $location.path("/tabs.housing");
+      }).catch(function(error) {
+          console.error("ERROR: " + error);
+      });
+  }
+});
+var clickedID = null;
+app.controller('postItemController', function($scope, $state, Items, Post, $window) {
+  $scope.items = Items;
+  
+  $scope.postHousingClick = function(name, startDate, endDate, price, desc) {
+    Post.name = name;
+    Post.startDate = startDate;
+    Post.endDate = endDate;
+    Post.price = price;
+    Post.desc = desc;
+    $scope.input = Post;
+    console.log($scope.input.name);
+    console.log($scope.input.startDate);
+    console.log($scope.input.endDate);
+    console.log($scope.input.price);
+    console.log($scope.input.desc);
+      $scope.items.$add({
+       "title": $scope.input.name,
+        "startDate": $scope.input.startDate,
+        "endDate": $scope.input.endDate,
+        "price": $scope.input.price,
+        "desc": $scope.input.desc,
+        "ID": UserID.uid.substr(9),
+        "username": UserID.facebook.displayName,
+        "facebookID": UserID.facebook.id
+    });
+    $state.go('tabs.housing');
+  };
+  $scope.itemInfo = function(index) {
+     var ref = new Firebase("https://badger-xchange.firebaseio.com/items");
+     ref.once("value", function(snapshot) {
+     var data = snapshot.val();
+     $scope.name = $scope.items[index].title;
+     $scope.startDate = $scope.items[index].startDate;
+     $scope.endDate = $scope.items[index].endDate;
+     $scope.price = $scope.items[index].price;
+     $scope.desc = $scope.items[index].desc;
+     $scope.ID = $scope.items[index].ID;
+     var lname = $scope.name;
+     var lstartDate = $scope.startDate;
+     var lendDate = $scope.endDate;
+     var lprice = $scope.price;
+     var ldesc = $scope.desc;
+<<<<<<< HEAD
+     console.log(lname);
+=======
+     var lID = $scope.ID;
+
+/*     console.log(lname);
+>>>>>>> e91dbca3de0b28e3a8fffc1c25f048de2187d2d2
+     console.log(lstartDate);
+     console.log(lendDate);
+     console.log(lprice);
+     console.log(ldesc);
+     $state.go('tabs.viewHousing');
+<<<<<<< HEAD
+=======
+     //$scope.name = lname;
+     console.log($scope.name);
+     console.log($scope.startDate);
+     console.log($scope.endDate);
+     console.log($scope.price);
+     console.log($scope.desc);
+     console.log($scope.ID);
+     clickedID = $scope.ID;   
+     
+>>>>>>> e91dbca3de0b28e3a8fffc1c25f048de2187d2d2
+    });
+  };
+
+  $scope.facebookMessage = function(){
+    console.log(clickedID);
+    var tempFacebook = clickedID;
+    $window.open('//facebook.com/' + tempFacebook);
+  };
+
+});
+
+/*app.controller("EmailLoginController", function($scope, $firebaseAuth, $location) {
+ 
+    $scope.register = function(username, password) {
+        var fbAuth = $firebaseAuth(fb);
+        fbAuth.$createUser({email: username, password: password}).then(function() {
+            return fbAuth.$authWithPassword({
+                email: username,
+                password: password
+            });
+        }).then(function(authData) {
+            $location.path("/tabs.housing");
+        }).catch(function(error) {
+            console.error("ERROR " + error);
+        });
+    }
+ 
+});*/
+/*
+.function authDataCallback(authData) {
+  if (authData) {
+    console.log("User " + authData.uid + " is logged in with " + authData.provider);
+  } else {
+    console.log("User is logged out");
+  }
+}*/
+/*app.controller('facebookMessageCotroller', function($scope, $window){
+  $scope.facebookMessage = function(){
+    var tempFacebook = UserID.uid.substr(9);
+    $window.open('//facebook.com/' + tempFacebook);
+  };
+});*/
+
+
+
+

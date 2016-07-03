@@ -1,0 +1,31 @@
+/* Empty. Add your own CSS if you like */
+.search {
+  position: relative;
+  color: #EE0000;
+  font-size: 16px;
+}
+
+.search input {
+  width: 100%;
+  height: 32px;
+
+  background: #eeoooo;
+  border: 1px solid #EE0000;
+  border-radius: 5px;
+  box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset;
+}
+
+.search input { padding-left: 32px;}
+.search .fa-search { 
+  position: absolute;
+  top: 7px;
+  left: 10px;
+}
+
+/*.backgroundGradient{
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#efad62), color-stop(100%,#f7d47c));
+    background: -webkit-linear-gradient(top, #ffffff 0%,#bd2031 100%);
+}*/
+.button-bar{
+  border: 1 px solide #EE0000;
+}

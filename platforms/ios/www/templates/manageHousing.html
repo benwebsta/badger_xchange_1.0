@@ -1,0 +1,31 @@
+<ion-view title="Manage Housing">
+    <ion-content padding="true">
+        <h2><center>Delete Old Posts</center></h2>
+        <a ui-sref="tabs.housing">
+            <div class="button-bar">
+                    <button class="button button-outline button-dark padding">
+                        <i class="icon ion-checkmark balanced padding"></i>Done
+                    </button>
+            
+            </div>
+        </a>
+
+
+  <ion-list ng-controller="manageHousingController"
+          show-delete="shouldShowDelete">
+  <ion-item ng-repeat="item in items" ng-click="itemInfo($index)"
+            class="item-thumbnail-left">
+
+    <h2>{{item.title}}</h2>
+    <p>{{item.price}}</p>
+    <ion-delete-button class="ion-minus-circled"
+                            ng-click="remove(item)">
+    </ion-delete-button>
+
+  </ion-item>
+</ion-list>
+
+    </ion-content>
+</ion-view>
+
+

@@ -1,0 +1,15 @@
+{
+  "name": "HelloIonic",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.3.1",
+    "angular": "1.4.7"
+  },
+  "resolutions": {
+    "angular-sanitize": "1.5.3",
+    "angular": ">= 1.0.8"
+  },
+  "dependencies": {
+    "ng-cordova-oauth": "^0.2.9"
+  }
+}
