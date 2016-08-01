@@ -1,20 +1,16 @@
-app.controller('ticketItemController', 
-  ["$scope", "$state", "Tickets", "postTicket", "$window", "$firebaseArray", "$timeout", "$ionicPopup", "userIdFactory",
-  function($scope, $state, Tickets, postTicket, $window, $firebaseArray, $timeout, $ionicPopup, userIdFactory) {
-  $scope.priceCap = 0;
-  $scope.data = {
-    priceCap : 0
-  }
-  $scope.items = Tickets;
+app.controller('bookItemController', 
+  ["$scope", "$state", "Books", "postBook", "$window", "$firebaseArray", "$timeout", "$ionicPopup", "userIdFactory",
+  function($scope, $state, Books, postBook, $window, $firebaseArray, $timeout, $ionicPopup, userIdFactory) {
+  $scope.items = Books;
   $scope.itemInfo = function(index) {
-    var messagesRef = new Firebase("https://badger-xchange.firebaseio.com/tickets");
+    var messagesRef = new Firebase("https://badger-xchange.firebaseio.com/books");
     $scope.messages = $firebaseArray(messagesRef);
     var id = $scope.items[index].$id;
     var item;
     $scope.messages.$loaded()
     .then(function() {
       item = $scope.messages.$getRecord(id);
-      $state.go('tabs.viewTickets', {'name': item.title, 'startDate': item.startDate, 
+      $state.go('tabs.viewBooks', {'name': item.title, 'startDate': item.startDate, 
                               'endDate': item.endDate, 'price': item.price, 'desc': item.desc, 'ID': item.ID});
     })
     .catch(function(err) {
@@ -34,11 +30,5 @@ app.controller('ticketItemController',
         $state.go('login');
      }
    });
-  }
-  $scope.priceFilter = function(item) {
-    var itemPrice = Number(item.price);
-    $scope.priceCap = $scope.data.priceCap;
-    var cap = (itemPrice > $scope.priceCap);
-    return (cap);
-  }
+  } 
 }]);

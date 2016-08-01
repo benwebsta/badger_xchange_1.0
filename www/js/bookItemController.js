@@ -1,6 +1,11 @@
 app.controller('bookItemController', 
   ["$scope", "$state", "Books", "postBook", "$window", "$firebaseArray", "$timeout", "$ionicPopup", "userIdFactory",
   function($scope, $state, Books, postBook, $window, $firebaseArray, $timeout, $ionicPopup, userIdFactory) {
+  $scope.noPosts = false;
+  $scope.priceCap = 0;
+  $scope.data = {
+    priceCap : 0
+  }
   $scope.items = Books;
   $scope.itemInfo = function(index) {
     var messagesRef = new Firebase("https://badger-xchange.firebaseio.com/books");
@@ -30,5 +35,11 @@ app.controller('bookItemController',
         $state.go('login');
      }
    });
+  }
+  $scope.priceFilter = function(item) {
+    var itemPrice = Number(item.price);
+    $scope.priceCap = $scope.data.priceCap;
+    var cap = (itemPrice > $scope.priceCap);
+    return (cap);
   } 
 }]);

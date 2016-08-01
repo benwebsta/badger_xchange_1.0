@@ -1,10 +1,12 @@
 app.controller('housingItemController', 
 	["$scope", "$state", "Housing", "postHouse", "$window", "$firebaseArray", "$timeout", "$ionicPopup", "userIdFactory", 
  function($scope, $state, Housing, postHouse, $window, $firebaseArray, $timeout, $ionicPopup, userIdFactory) {
+  console.log($scope);
   $scope.priceCap = 0;
   $scope.data = {
     priceCap : 0
   }
+
   $scope.items = Housing;
   $scope.itemInfo = function(index) {
     var messagesRef = new Firebase("https://badger-xchange.firebaseio.com/housing");
@@ -35,10 +37,18 @@ app.controller('housingItemController',
      }
    });
   }
+  // $scope.$watch('priceCap',function(val){
+  //   console.log("val: " + val);
+  //   console.log("priceCap Changed");
+  //   $scope.priceCap = parseInt(val);  
+  // });
   $scope.priceFilter = function(item) {
-    var itemPrice = Number(item.price);
+    console.log("item price: " + item.price);
+    console.log("input price cap: " + $scope.priceCap);
+    return (item.price > $scope.priceCap);
+  }
+
+  $scope.setLevelText = function(rangeValue){
     $scope.priceCap = $scope.data.priceCap;
-    var cap = (itemPrice > $scope.priceCap);
-    return (cap);
   }
 }]);

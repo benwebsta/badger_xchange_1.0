@@ -1,8 +1,9 @@
 <ion-view class="backgroundGradient" title="">
     <ion-content padding="true">
-        <button class="button" ng-click="facebooklogout()">
+        <button class="button button-dark" ng-click="facebooklogout()">
             Logout
         </button>
+        <br><br>
         <div class="button-bar">
             <button class="button button-outline button-dark icon-left ion-compose padding" ui-sref="tabs.postHousing">
                 Post a Housing
@@ -14,12 +15,22 @@
     <br>
     <div class="search">
         <i class="icon ion-search fa fa-search"></i>
-        <input type="text" placeholder="search here" ng-model="search">
+        <input type="text" placeholder="keyword search" ng-model="search">
+    </div>
+    <div>
+        <h4>Price Range Search:</h4>
+    </div>
+    <div class="range">
+        <input id = "levelRange" type="range" name="userlevelofsurfing" min="0" max="2000" ng-model="data.priceCap" ng-change="setLevelText()">
+    </div>
+    <br>
+    <div class="item item-divider">
+        Max Price : {{data.priceCap}}
     </div>
     <br>
 
-    <ion-list ng-controller="housingItemController" ui-sref="tabs.viewHousing">
-        <ion-item ng-repeat="item in items | filter: search" ng-click="itemInfo($index)">
+    <ion-list ui-sref="tabs.viewHousing">
+        <ion-item ng-repeat="item in items | filter: priceFilter" ng-click="itemInfo($index)">
           {{item.title}}: ${{item.price}} 
         </ion-item>
     </ion-list>
