@@ -15,6 +15,9 @@
         },
         "cordova-plugin-calendar": {
             "PACKAGE_NAME": "com.ionicframework.ioniclogin622247"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.ionicframework.ioniclogin622247"
         }
     },
     "dependent_plugins": {

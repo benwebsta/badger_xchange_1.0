@@ -1,31 +1,36 @@
 <ion-view title="">
     <ion-content padding="true">
-        <button class="button button-dark" ng-click="facebooklogout()">
-            Logout
-        </button>
-        <br><br>
         <div class="button-bar">
             <button class="button button-outline button-dark icon-left ion-compose padding" ui-sref="tabs.postTickets">
-                Post a Ticket
+                Post
             </button>
             <button class="button button-outline button-dark icon-left ion-settings padding" ui-sref="tabs.manageTickets">
-                Manage Tickets
+                Manage
+            </button>
+            <button class="button button-dark" ng-click="facebooklogout()">
+                Logout
             </button>
         </div>
         <br>
-        <div class="search">
-            <i class="icon ion-search fa fa-search"></i>
-            <input type="text" placeholder="keyword search" ng-model="search">
+        <div class="row">
+            <div class="col col-50">
+                <div class="search">
+                    <i class="icon ion-search fa fa-search"></i>
+                    <input type="text" placeholder="keyword search" ng-model="search">
+                </div>
+            </div>
+            <div class="col col-50">
+                Category Selection
+            </div>
         </div>
-        <div>
-            <h4>Price Range Search:</h4>
-        </div>
+        
         <div class="range">
-            <input id = "levelRange" type="range" min="0" max="2000" ng-model="data.priceCap" >
+            <i class="icon ion-social-usd-outline"></i>
+            <input id = "levelRange" type="range" min="0" max="2000" ng-model="data.priceCap">
+            <i class="icon ion-social-usd"></i>
         </div>
-        <br>
         <div class="item item-divider">
-            Max Price : {{data.priceCap}}
+            Max Price : {{data.priceCap}} 
         </div>
         <br>
 

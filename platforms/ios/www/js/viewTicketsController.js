@@ -12,6 +12,6 @@ app.controller('viewTicketsController',
   }, 0);
   $scope.facebookMessage = function(){  
     var tempFacebook = 'https://facebook.com/' + clickedID;
-    inAppBrowserRef = window.open(tempFacebook);
+    inAppBrowserRef = window.open(tempFacebook, '_system', 'location=yes');
   };
 }]);

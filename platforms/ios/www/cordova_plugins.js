@@ -29,6 +29,38 @@ module.exports = [
         "file": "plugins/cordova-plugin-calendar/test/tests.js",
         "id": "cordova-plugin-calendar.tests",
         "pluginId": "cordova-plugin-calendar"
+    },
+    {
+        "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
+        "id": "cordova-plugin-camera.Camera",
+        "pluginId": "cordova-plugin-camera",
+        "clobbers": [
+            "Camera"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-camera/www/CameraPopoverOptions.js",
+        "id": "cordova-plugin-camera.CameraPopoverOptions",
+        "pluginId": "cordova-plugin-camera",
+        "clobbers": [
+            "CameraPopoverOptions"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-camera/www/Camera.js",
+        "id": "cordova-plugin-camera.camera",
+        "pluginId": "cordova-plugin-camera",
+        "clobbers": [
+            "navigator.camera"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-camera/www/ios/CameraPopoverHandle.js",
+        "id": "cordova-plugin-camera.CameraPopoverHandle",
+        "pluginId": "cordova-plugin-camera",
+        "clobbers": [
+            "CameraPopoverHandle"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -37,7 +69,9 @@ module.exports.metadata =
     "cordova-plugin-inappbrowser": "1.4.1-dev",
     "cordova-plugin-extension": "1.5.1",
     "cordova-plugin-admobpro": "2.18.0",
-    "cordova-plugin-calendar": "4.5.1"
+    "cordova-plugin-calendar": "4.5.1",
+    "cordova-plugin-compat": "1.0.0",
+    "cordova-plugin-camera": "2.2.0"
 }
 // BOTTOM OF METADATA
 });
