@@ -53,6 +53,13 @@ module.exports = [
         "clobbers": [
             "CameraPopoverHandle"
         ]
+    },
+    {
+        "file": "plugins/com.cordova.plugins.sms/www/sms.js",
+        "id": "com.cordova.plugins.sms.Sms",
+        "clobbers": [
+            "window.sms"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -63,7 +70,9 @@ module.exports.metadata =
     "cordova-plugin-admobpro": "2.18.0",
     "cordova-plugin-compat": "1.0.0",
     "cordova-plugin-calendar": "4.5.1",
-    "cordova-plugin-camera": "2.2.0"
+    "cordova-plugin-camera": "2.2.0",
+    "com.cordova.plugins.sms": "0.1.10",
+    "cordova-plugin-whitelist": "1.2.2"
 };
 // BOTTOM OF METADATA
 });

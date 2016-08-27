@@ -10,7 +10,7 @@
     "EventKitUI.framework": 2,
     "Foundation.framework": 1,
     "MediaPlayer.framework": 1,
-    "MessageUI.framework": 1,
+    "MessageUI.framework": 2,
     "QuartzCore.framework": 1,
     "SafariServices.framework": 1,
     "StoreKit.framework": 1,

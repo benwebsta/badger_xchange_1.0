@@ -14,7 +14,7 @@
                    <input type="date" ng-model="endDate">
             </label>
             <label class="item item-input">
-                <input type="text" placeholder="Price" ng-model="price">
+                <input type="number" placeholder="Price format: '500'" ng-model="price">
             </label>
             <label class="item item-input">
                 <input type="text" placeholder="Description" ng-model="desc">
@@ -25,6 +25,12 @@
                         Post
                     </button>
             </div>
-
+            <div ng-show="formError">
+                <h5 style="color:red;">
+                    Please make sure all fields are filled out.
+                    <br> 
+                    **Pictures optional**
+                </h5>
+            </div>
     </ion-content>
   </ion-view>

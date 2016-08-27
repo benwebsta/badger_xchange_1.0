@@ -10,7 +10,7 @@ app.controller('viewBooksController',
       $scope.ID = $stateParams.ID;
       clickedID = $stateParams.ID;
   }, 0);
-  $scope.facebookMessage = function(){
+  $scope.message = function(){
     var tempFacebook = 'https://facebook.com/' + clickedID;
     inAppBrowserRef = window.open(tempFacebook, '_system', 'location=yes');
   };

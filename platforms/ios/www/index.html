@@ -15,6 +15,7 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
+    <script src="js/ng-cordova.min.js"></script>
     <script src="cordova.js"></script>
     <script type="text/javascript" src="js/admob_simple.js"></script>
     <script src="js/ng-cordova-oauth.min.js"></script>
@@ -40,7 +41,9 @@
     <script src="js/manageTicketsController.js"></script>
 
   </head>
+  <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
   <body ng-app="badger-xchange" class="platform-ios platform-cordova platform-webview">
+
 
   <ion-nav-bar align-title="center" class="bar-dark nav-title-slide-ios7">
     <ion-nav-back-button class="button-clear">

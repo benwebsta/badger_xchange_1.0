@@ -3,7 +3,7 @@
         <h1><center>Post Ticket</center></h1>
         <div class="list">
             <label class="item item-input">
-                 <input type="text" placeholder="Title of Post" ng-model="name">
+                <input type="text" placeholder="Title of Post" ng-model="name">
             </label>
             <label class="item item-input">
                    <span class="input-label" style="color: #aaa;">Start Date</span> 
@@ -14,7 +14,7 @@
                    <input type="date" ng-model="endDate">
             </label>
             <label class="item item-input">
-                <input type="text" placeholder="Price" ng-model="price">
+                <input type="number" placeholder="Price format: '500'" ng-model="price">
             </label>
             <label class="item item-input">
                 <input type="text" placeholder="Description" ng-model="desc">
@@ -24,6 +24,13 @@
                     <button class="button button-outline button-dark icon-left ion-checkmark padding" ng-click="postTicketClick(name, startDate, endDate, price, desc)">
                         Post
                     </button>
+            </div>
+            <div ng-show="formError">
+                <h5 style="color:red;">
+                    Please make sure all fields are filled out.
+                    <br> 
+                    **Pictures optional**
+                </h5>
             </div>
     </ion-content>
   </ion-view>

@@ -13,14 +13,11 @@
         </div>
         <br>
         <div class="row">
-            <div class="col col-50">
+            <div class="col col-100">
                 <div class="search">
                     <i class="icon ion-search fa fa-search"></i>
                     <input type="text" placeholder="keyword search" ng-model="search">
                 </div>
-            </div>
-            <div class="col col-50">
-                Category Selection
             </div>
         </div>
         
@@ -32,7 +29,6 @@
         <div class="item item-divider">
             Max Price : {{data.priceCap}} 
         </div>
-        <br>
 
         
         <div class="card" ui-sref="tabs.viewTickets" ng-hide="filtered.length == 0">

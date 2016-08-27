@@ -5,32 +5,6 @@
     },
     "config_munge": {
         "files": {
-            "config.xml": {
-                "parents": {
-                    "/*": [
-                        {
-                            "xml": "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVInAppBrowser\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"AdMob\"><param name=\"ios-package\" value=\"CDVAdMobPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Calendar\"><param name=\"ios-package\" value=\"Calendar\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Camera\"><param name=\"ios-package\" value=\"CDVCamera\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<preference name=\"CameraUsesGeolocation\" value=\"false\" />",
-                            "count": 1
-                        }
-                    ]
-                }
-            },
             "*-Info.plist": {
                 "parents": {
                     "NSAppTransportSecurity": [
@@ -58,13 +32,40 @@
                         }
                     ]
                 }
+            },
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"AdMob\"><param name=\"ios-package\" value=\"CDVAdMobPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Calendar\"><param name=\"ios-package\" value=\"Calendar\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Camera\"><param name=\"ios-package\" value=\"CDVCamera\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<preference name=\"CameraUsesGeolocation\" value=\"false\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVInAppBrowser\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Sms\"><param name=\"ios-package\" value=\"Sms\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
             }
         }
     },
     "installed_plugins": {
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.ionicframework.ioniclogin622247"
-        },
         "cordova-plugin-extension": {
             "PACKAGE_NAME": "com.ionicframework.ioniclogin622247"
         },
@@ -79,19 +80,19 @@
         },
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "com.ionicframework.ioniclogin622247"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.ionicframework.ioniclogin622247"
+        },
+        "com.cordova.plugins.sms": {
+            "PACKAGE_NAME": "com.ionicframework.ioniclogin622247"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.ionicframework.ioniclogin622247"
         }
     },
     "dependent_plugins": {},
     "modules": [
-        {
-            "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-            "id": "cordova-plugin-inappbrowser.inappbrowser",
-            "pluginId": "cordova-plugin-inappbrowser",
-            "clobbers": [
-                "cordova.InAppBrowser.open",
-                "window.open"
-            ]
-        },
         {
             "file": "plugins/cordova-plugin-admobpro/www/AdMob.js",
             "id": "cordova-plugin-admobpro.AdMob",
@@ -144,14 +145,33 @@
             "clobbers": [
                 "CameraPopoverHandle"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+            "id": "cordova-plugin-inappbrowser.inappbrowser",
+            "pluginId": "cordova-plugin-inappbrowser",
+            "clobbers": [
+                "cordova.InAppBrowser.open",
+                "window.open"
+            ]
+        },
+        {
+            "file": "plugins/com.cordova.plugins.sms/www/sms.js",
+            "id": "com.cordova.plugins.sms.Sms",
+            "pluginId": "com.cordova.plugins.sms",
+            "clobbers": [
+                "window.sms"
+            ]
         }
     ],
     "plugin_metadata": {
-        "cordova-plugin-inappbrowser": "1.4.1-dev",
         "cordova-plugin-extension": "1.5.1",
         "cordova-plugin-admobpro": "2.18.0",
         "cordova-plugin-calendar": "4.5.1",
         "cordova-plugin-compat": "1.0.0",
-        "cordova-plugin-camera": "2.2.0"
+        "cordova-plugin-camera": "2.2.0",
+        "cordova-plugin-inappbrowser": "1.4.1-dev",
+        "com.cordova.plugins.sms": "0.1.10",
+        "cordova-plugin-whitelist": "1.2.2"
     }
 }

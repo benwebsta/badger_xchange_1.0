@@ -1,6 +1,6 @@
 app.controller('postTicketController', 
-  ["$scope", "$state", "Tickets", "postTicket", "$window", "userIdFactory", "$ionicPopup",
-  function($scope, $state, Tickets, postTicket, $window, userIdFactory, $ionicPopup) {
+  ["$scope", "$state", "Tickets", "postTicket", "$window", "userIdFactory", "$ionicPopup", "$filter",
+  function($scope, $state, Tickets, postTicket, $window, userIdFactory, $ionicPopup, $filter) {
   $scope.items = Tickets;
   $scope.postTicketClick = function(name, startDate, endDate, price, desc) {
     if(isNaN(price)) {
@@ -14,6 +14,10 @@ app.controller('postTicketController',
           $scope.formError = true;
       }
       else{
+        var date1 = $filter('date')(new Date(startDate), 'MM/dd/yyyy');
+        var startDate = date1.toString();
+        var date2 = $filter('date')(new Date(endDate), 'MM/dd/yyyy');
+        var endDate = date2.toString();
         postTicket.name = name;
         postTicket.startDate = startDate;
         postTicket.endDate = endDate;

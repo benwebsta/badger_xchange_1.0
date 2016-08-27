@@ -1,6 +1,6 @@
 app.controller('postBookController', 
-  ["$scope", "$state", "Books", "postBook", "$window", "userIdFactory", "$ionicPopup",
-  function($scope, $state, Books, postBook, $window, userIdFactory, $ionicPopup) {
+  ["$scope", "$state", "Books", "postBook", "$window", "userIdFactory", "$ionicPopup", "$filter",
+  function($scope, $state, Books, postBook, $window, userIdFactory, $ionicPopup, $filter) {
   $scope.items = Books;
   $scope.postBookClick = function(name, startDate, endDate, price, desc) {
     if(isNaN(price)) {
@@ -14,6 +14,10 @@ app.controller('postBookController',
           $scope.formError = true;
       }
       else{
+        var date1 = $filter('date')(new Date(startDate), 'MM/dd/yyyy');
+        var startDate = date1.toString();
+        var date2 = $filter('date')(new Date(endDate), 'MM/dd/yyyy');
+        var endDate = date2.toString();
         postBook.name = name;
         postBook.startDate = startDate;
         postBook.endDate = endDate;
