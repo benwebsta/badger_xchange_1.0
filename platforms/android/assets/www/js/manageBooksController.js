@@ -34,6 +34,9 @@ app.controller('manageBooksController',
      if(res) {
        var deleteFirebaseRef = new Firebase("https://badger-xchange.firebaseio.com/books/"+ index.fireBaseKey);
        deleteFirebaseRef.remove();
+        angular.forEach($scope.items,function(value, key) {
+          value.fireBaseKey = key;
+        });
      }
    });
   }

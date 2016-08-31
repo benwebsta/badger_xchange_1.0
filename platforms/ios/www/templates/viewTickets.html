@@ -21,16 +21,18 @@
 
         </ion-list>
     <a>
-      <div class="button-bar">
+    <br>
+        <div class="button-bar">
                 <button class= "button button-assertive icon-left ion-chatbox padding" ng-click = "message()">
-                Message Seller
-                </button>  
-                
+                Contact Via Facebook
+                </button>       
         </div>
-
-        <div class = "item item-image">
-               <img src="./img/banner_ad.jpg" class = "logo"/>
-        </div>  
+        <br>
+        <div class="button-bar">
+                <a href="sms:+1{{phoneNumber}}" class= "button button-assertive icon-left ion-chatbox padding" ng-show="phoneNumber != null">
+                    Send Text Message
+                </a>       
+        </div>
     </a>
 </ion-content>
 </ion-view>

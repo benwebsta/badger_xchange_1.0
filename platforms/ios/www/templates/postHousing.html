@@ -20,7 +20,7 @@
                 <input type="text" placeholder="Description" ng-model="desc">
             </label>
             <label class="item item-input">
-                <input type="text" placeholder="Phone Number" ng-model="phoneNumber">
+                <input type="number" placeholder="10-digit Phone Number" ng-model="phoneNumber">
             </label>
         </div>
             <div class="button-bar">
@@ -32,7 +32,13 @@
                 <h5 style="color:red;">
                     Please make sure all fields are filled out.
                     <br> 
-                    **Pictures optional**
+                </h5>
+            </div>
+            <div ng-show="phoneNumberError">
+                <h5 style="color:red;">
+                    Please make sure phone number is 10 digits
+                    <br> 
+                    **Format: 1234567891**
                 </h5>
             </div>
     </ion-content>

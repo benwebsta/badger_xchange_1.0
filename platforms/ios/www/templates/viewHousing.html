@@ -1,7 +1,6 @@
 <ion-view title="View Housing">
 <ion-content padding="true">
     <h1><center>Housing Information</center></h1>
-
         <ion-list > 
             <ion-item class="item item-text-wrap">
                 {{nameId}}
@@ -21,20 +20,16 @@
         </ion-list>
     <a>
     <br>
-    <a href="sms:+17146421889">Send SMS</a>
         <div class="button-bar">
-                <button class= "button button-assertive icon-left ion-chatbox padding" ng-click = "message()" ng-show="phoneNumber == 'No phone number provided.'">
-                Message Seller
+                <button class= "button button-assertive icon-left ion-chatbox padding" ng-click = "message()">
+                Contact Via Facebook
                 </button>       
         </div>
+        <br>
         <div class="button-bar">
-                <a href="sms:+17146421889" class= "button button-assertive icon-left ion-chatbox padding" ng-show="phoneNumber != 'No phone number provided.'">
-                    Message Seller Txt
+                <a href="sms:+1{{phoneNumber}}" class= "button button-assertive icon-left ion-chatbox padding" ng-show="phoneNumber != null">
+                    Send Text Message
                 </a>       
-        </div>
-
-        <div class = "item item-image">
-               <img src="./img/BX_logo.jpg" class = "logo"/>
         </div>
     </a>
 </ion-content>

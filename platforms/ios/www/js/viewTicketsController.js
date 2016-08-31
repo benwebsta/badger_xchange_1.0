@@ -8,6 +8,7 @@ app.controller('viewTicketsController',
       $scope.priceId = $stateParams.price;
       $scope.descId = $stateParams.desc;
       $scope.ID = $stateParams.ID;
+      $scope.phoneNumber = $stateParams.phoneNumber;
       clickedID = $stateParams.ID;
   }, 0);
   $scope.message = function(){  

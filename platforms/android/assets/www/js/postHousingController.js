@@ -2,6 +2,7 @@ app.controller('postHousingController',
     ["$scope", "$state", "Housing", "postHouse", "$window", "userIdFactory", "$ionicPopup", "$filter",
 function($scope, $state, Housing, postHouse, $window, userIdFactory, $ionicPopup, $filter) {
   $scope.items = Housing;
+  $scope.phoneNumber = null;
   $scope.postHousingClick = function(name, startDate, endDate, price, desc, phoneNumber) {
     if(isNaN(price)) {
         var alertPopup = $ionicPopup.alert({

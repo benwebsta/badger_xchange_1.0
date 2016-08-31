@@ -15,7 +15,7 @@ app.controller('ticketItemController',
     .then(function() {
       item = $scope.messages.$getRecord(id);
       $state.go('tabs.viewTickets', {'name': item.title, 'startDate': item.startDate, 
-                              'endDate': item.endDate, 'price': item.price, 'desc': item.desc, 'ID': item.facebookID});
+                              'endDate': item.endDate, 'price': item.price, 'desc': item.desc, 'ID': item.facebookID, 'phoneNumber': item.phoneNumber});
     })
     .catch(function(err) {
       console.error(err);

@@ -7,7 +7,7 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-inappbrowser": {
+        "com.cordova.plugins.sms": {
             "PACKAGE_NAME": "com.ionicframework.ioniclogin622247"
         },
         "cordova-plugin-admobpro": {
@@ -19,7 +19,7 @@
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "com.ionicframework.ioniclogin622247"
         },
-        "com.cordova.plugins.sms": {
+        "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.ionicframework.ioniclogin622247"
         },
         "cordova-plugin-whitelist": {

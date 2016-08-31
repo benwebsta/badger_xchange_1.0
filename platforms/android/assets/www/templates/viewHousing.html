@@ -22,13 +22,14 @@
     <a>
     <br>
         <div class="button-bar">
-                <button class= "button button-assertive icon-left ion-chatbox padding" ng-click = "message()">
+                <button class= "button button-assertive icon-left ion-chatbox padding" ng-click = "message()" ng-show="phoneNumber == null">
                 Message Seller
                 </button>       
         </div>
-
-        <div class = "item item-image">
-               <img src="./img/BX_logo.jpg" class = "logo"/>
+        <div class="button-bar">
+                <a href="sms:+{{phoneNumber}}" class= "button button-assertive icon-left ion-chatbox padding" ng-show="phoneNumber != null">
+                    Message Seller
+                </a>       
         </div>
     </a>
 </ion-content>

@@ -103,7 +103,7 @@ $stateProvider
         'price': 'default price',
         'desc': 'default description',
 		    'ID': 'default id',
-        'phoneNumber': 'No phone number provided.'
+        'phoneNumber': null
       }, 
   views: {
     housing2: {
@@ -120,11 +120,12 @@ $stateProvider
         'endDate': 'default end date',
         'price': 'default price',
         'desc': 'default description',
-        'ID': 'default id'
+        'ID': 'default id',
+        'phoneNumber': null
       }, 
   views: {
     books2: {
-      templateUrl: 'templates/viewBooks.html',
+      templateUrl: 'templates/viewBooks.html',  
       controller: "viewBooksController"
     }
   }
@@ -137,7 +138,8 @@ $stateProvider
         'endDate': 'default end date',
         'price': 'default price',
         'desc': 'default description',
-        'ID': 'default id'
+        'ID': 'default id',
+        'phoneNumber': null
       }, 
   views: {
     tickets2: {
