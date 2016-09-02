@@ -3,7 +3,7 @@ app.controller('ticketItemController',
   function($scope, $state, Tickets, postTicket, $window, $firebaseArray, $timeout, $ionicPopup, userIdFactory) {
   $scope.priceCap = 0;
   $scope.data = {
-    priceCap : 2000
+    priceCap : 200
   }
   $scope.items = Tickets;
   $scope.itemInfo = function(index) {

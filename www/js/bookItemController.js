@@ -4,7 +4,7 @@ app.controller('bookItemController',
   $scope.noPosts = false;
   $scope.priceCap = 0;
   $scope.data = {
-    priceCap : 2000
+    priceCap : 200
   }
   $scope.items = Books;
   $scope.itemInfo = function(index) {

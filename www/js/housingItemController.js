@@ -3,7 +3,7 @@ app.controller('housingItemController',
  function($scope, $state, Housing, postHouse, $window, $firebaseArray, $timeout, $ionicPopup, userIdFactory) {
   $scope.priceCap = 0;
   $scope.data = {
-    priceCap : 2000
+    priceCap : 1000
   }
   $scope.items = Housing;
   $scope.itemInfo = function(index) {
