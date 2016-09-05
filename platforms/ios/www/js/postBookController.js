@@ -24,7 +24,7 @@ app.controller('postBookController',
       else{
         var date1 = $filter('date')(new Date(startDate), 'MM/dd/yyyy');
         var startDate = date1.toString();
-        var date2 = $filter('date')(new Date(endDate), 'MM/dd/yyyy');
+        var date2 = $filter('date')(new Date(endDate), 'MM/dd/yyyy'); 
         var endDate = date2.toString();
         postBook.name = name;
         postBook.startDate = startDate;

@@ -2,20 +2,14 @@
 <ion-content padding="true">
     <h1><center>Housing Information</center></h1>
         <ion-list > 
-            <ion-item class="item item-text-wrap">
-                {{nameId}}
+            <ion-item class="item item-text-wrap"> 
+                <h2><b>Title: </b></h2>{{nameId}}
             </ion-item>
             <ion-item >
-                {{startDateId}}
-            </ion-item>
-            <ion-item >
-                {{endDateId}}
-            </ion-item>
-            <ion-item >
-                {{priceId}}
+                <h2><b>Price: </b></h2>${{priceId}}
             </ion-item>
             <ion-item class="item item-text-wrap">
-                {{descId}}
+                <h2><b>Description: </b></h2>{{descId}}
             </ion-item>
         </ion-list>
     <a>

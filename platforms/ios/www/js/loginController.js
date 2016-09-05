@@ -7,13 +7,13 @@ app.controller("loginController",
     $scope.loginFacebook = function() {
       Auth.$authWithOAuthPopup('facebook').then(function(authData) {
         userIdFactory.UserID = authData;
-        $state.go('tabs.housing');
+        $state.go('tabs.tickets');
         }).catch(function(error) {
           if (error.code === 'TRANSPORT_UNAVAILABLE') {
             console.log("transport unavail");
             console.log(error)
             Auth.$authWithOAuthPopup('facebook').then(function(authData) {
-              $state.go('tabs.housing');
+              $state.go('tabs.tickets');
             });
           }
           else 
@@ -22,4 +22,12 @@ app.controller("loginController",
           }
       });
     };
+    $scope.terms = function() {
+      var temp = "https://campusexchange.wordpress.com/terms/";
+      inAppBrowserRef = window.open(temp, '_system', 'location=yes');
+    }
+    $scope.privacy = function() {
+      var temp = "https://campusexchange.wordpress.com/privacy/";
+      inAppBrowserRef = window.open(temp, '_system', 'location=yes');
+    } 
 }]);
