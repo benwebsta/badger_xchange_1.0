@@ -11,7 +11,13 @@ function($scope, $state, Housing, postHouse, $window, userIdFactory, $ionicPopup
         });
     }
     else{
-        if(name == null || startDate == null || endDate == null || price == null || desc == null){
+        if(phoneNumber != null){
+            var phoneNum = phoneNumber.toString();
+        }
+        if(phoneNum != null && phoneNum.length != 10){
+            $scope.phoneNumberError = true;
+        }
+        else if(name == null || startDate == null || endDate == null || price == null || desc == null){
             $scope.formError = true;
         }
         else{

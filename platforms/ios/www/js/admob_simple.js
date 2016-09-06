@@ -25,7 +25,6 @@ function initApp() {
   AdMob.createBanner( {
     adId: admobid.banner,
     position: AdMob.AD_POSITION.BOTTOM_CENTER,
-    isTesting: true, // TODO: remove this line when release
     overlap: false,
     offsetTopBar: false,
     bgColor: 'black'
@@ -34,7 +33,6 @@ function initApp() {
   // this will load a full screen ad on startup
   AdMob.prepareInterstitial({
     adId: admobid.interstitial,
-    isTesting: true, // TODO: remove this line when release
     autoShow: true
   });
 }

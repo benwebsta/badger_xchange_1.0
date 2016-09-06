@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.ionicframework.ioniclogin622247;
+package com.ionicframework.ioniclogin622247_2;
 
 import android.os.Bundle;
 import org.apache.cordova.*;

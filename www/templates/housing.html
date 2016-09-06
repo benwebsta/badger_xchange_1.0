@@ -27,7 +27,8 @@
             <i class="icon ion-social-usd"></i>
         </div>
         <div class="item item-divider">
-            Max Price : {{data.priceCap}} 
+            <h2 ng-show="data.priceCap == 1000"><b>Max Price : {{data.priceCap}}+</b></h2>
+            <h2 ng-show="data.priceCap != 1000"><b>Max Price : {{data.priceCap}}</b></h2> 
         </div>
 
         

@@ -1,31 +1,29 @@
 <ion-view title="View Tickets">
 <ion-content padding="true">
     <h1><center>Ticket Information</center></h1>
-
         <ion-list > 
             <ion-item class="item item-text-wrap"> 
-                {{nameId}}
+                <h2><b>Title: </b></h2>{{nameId}}
             </ion-item>
             <ion-item >
-                {{startDateId}}
-            </ion-item>
-            <ion-item >
-                {{endDateId}}
-            </ion-item>
-            <ion-item >
-                {{priceId}}
+                <h2><b>Price: </b></h2>${{priceId}}
             </ion-item>
             <ion-item class="item item-text-wrap">
-                {{descId}}
+                <h2><b>Description: </b></h2>{{descId}}
             </ion-item>
-
         </ion-list>
     <a>
-      <div class="button-bar">
+    <br>
+        <div class="button-bar">
                 <button class= "button button-assertive icon-left ion-chatbox padding" ng-click = "message()">
-                Message Seller
-                </button>  
-                
+                Contact Via Facebook
+                </button>       
+        </div>
+        <br>
+        <div class="button-bar">
+                <a href="sms:+1{{phoneNumber}}" class= "button button-assertive icon-left ion-chatbox padding" ng-show="phoneNumber != null">
+                    Send Text Message
+                </a>       
         </div>
     </a>
 </ion-content>

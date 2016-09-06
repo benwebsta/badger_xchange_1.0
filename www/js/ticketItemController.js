@@ -39,6 +39,11 @@ app.controller('ticketItemController',
     var itemPrice = Number(item.price);
     $scope.priceCap = $scope.data.priceCap;
     var cap = (itemPrice < $scope.priceCap);
-    return (cap);
+    if($scope.priceCap > 199){
+      return true;
+    }
+    else{
+      return (cap);
+    }
   }
 }]);

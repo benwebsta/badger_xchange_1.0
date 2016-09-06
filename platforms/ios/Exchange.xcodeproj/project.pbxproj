@@ -328,6 +328,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 510;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = 9HZTW96TQH;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Exchange" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -431,6 +436,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -450,6 +457,7 @@
 					"\"$(SRCROOT)/Exchange/Plugins/cordova-plugin-extension\"",
 				);
 				PRODUCT_NAME = Exchange;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -462,6 +470,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -478,6 +488,7 @@
 					"\"$(SRCROOT)/Exchange/Plugins/cordova-plugin-extension\"",
 				);
 				PRODUCT_NAME = Exchange;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -39,6 +39,11 @@ app.controller('housingItemController',
     var itemPrice = Number(item.price);
     $scope.priceCap = $scope.data.priceCap;
     var cap = (itemPrice < $scope.priceCap);
-    return (cap);
+    if($scope.priceCap > 999){
+      return true;
+    }
+    else{
+      return (cap);
+    }
   }
 }]);

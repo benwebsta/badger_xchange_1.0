@@ -4,7 +4,7 @@ app.controller('bookItemController',
   $scope.noPosts = false;
   $scope.priceCap = 0;
   $scope.data = {
-    priceCap : 2000
+    priceCap : 200
   }
   $scope.items = Books;
   $scope.itemInfo = function(index) {
@@ -16,7 +16,7 @@ app.controller('bookItemController',
     .then(function() {
       item = $scope.messages.$getRecord(id);
       $state.go('tabs.viewBooks', {'name': item.title, 'startDate': item.startDate, 
-                              'endDate': item.endDate, 'price': item.price, 'desc': item.desc, 'ID': item.facebookID});
+                              'endDate': item.endDate, 'price': item.price, 'desc': item.desc, 'ID': item.facebookID, 'phoneNumber': item.phoneNumber});
     })
     .catch(function(err) {
       console.error(err);

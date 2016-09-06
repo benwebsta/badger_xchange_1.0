@@ -2,7 +2,8 @@ app.controller('postTicketController',
   ["$scope", "$state", "Tickets", "postTicket", "$window", "userIdFactory", "$ionicPopup", "$filter",
   function($scope, $state, Tickets, postTicket, $window, userIdFactory, $ionicPopup, $filter) {
   $scope.items = Tickets;
-  $scope.postTicketClick = function(name, startDate, endDate, price, desc) {
+  $scope.phoneNumber = null;
+  $scope.postTicketClick = function(name, startDate, endDate, price, desc, phoneNumber) {
     if(isNaN(price)) {
       var alertPopup = $ionicPopup.alert({
             title: 'Error processing form.',
@@ -10,7 +11,13 @@ app.controller('postTicketController',
       });
     }
     else{
-      if(name == null || startDate == null || endDate == null || price == null || desc == null){
+      if(phoneNumber != null){
+          var phoneNum = phoneNumber.toString();
+      }
+      if(phoneNum != null && phoneNum.length != 10){
+          $scope.phoneNumberError = true;
+      }
+      else if(name == null || startDate == null || endDate == null || price == null || desc == null){
           $scope.formError = true;
       }
       else{
@@ -24,6 +31,7 @@ app.controller('postTicketController',
         postTicket.price = price;
         postTicket.desc = desc;
         $scope.input = postTicket;
+        $scope.phoneNumber = phoneNumber;
           $scope.items.$add({
            "title": $scope.input.name,
             "startDate": $scope.input.startDate,
@@ -32,7 +40,8 @@ app.controller('postTicketController',
             "desc": $scope.input.desc,
             "ID": userIdFactory.UserID.uid.substr(9),
             "username": userIdFactory.UserID.facebook.displayName,
-            "facebookID": userIdFactory.UserID.facebook.id
+            "facebookID": userIdFactory.UserID.facebook.id,
+            "phoneNumber": $scope.phoneNumber
         });
         $state.go('tabs.tickets');
       }
